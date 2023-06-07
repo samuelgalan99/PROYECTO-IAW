@@ -9,7 +9,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 
   try {
     // Consultamos el viaje seleccionado
-    $consulta_viaje = "SELECT * FROM viajes WHERE id = $viaje_id FOR UPDATE";
+    $consulta_viaje = "SELECT * FROM viajes WHERE id = $viaje_id";
     $resultado_viaje = $mysqli->query($consulta_viaje);
 
     // Verifico si se encontró el viaje
@@ -36,6 +36,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
           echo "Horario: " . $horario . "<br>";
 
           echo "<br>";
+          echo "<a href='viajes.php'>Volver</a>";
           echo "<a href='tickets_reservados.php'>Ver todos los tickets reservados</a>";
         }
     }
