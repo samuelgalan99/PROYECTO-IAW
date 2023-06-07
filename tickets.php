@@ -30,30 +30,62 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 
         if ($resultado_eliminar) {
           // Mostramos al usuario el ticket reservado
-          echo "Ticket reservado con éxito.<br>";
+          echo "<!DOCTYPE html>";
+          echo "<html>";
+          echo "<head>";
+          echo "<meta charset='UTF-8'>";
+          echo "<meta http-equiv='X-UA-Compatible' content='IE=edge'>";
+          echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+          echo "<title>Ticket Reservado</title>";
+          echo "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css'>";
+          echo "<style>";
+          echo "body {";
+          echo "background-color: #47ABDD;";
+          echo "padding: 20px;";
+          echo "}";
+          echo "h2 {";
+          echo "text-align: center;";
+          echo "margin-bottom: 20px;";
+          echo "color: #FFFFFF;";
+          echo "}";
+          echo "a {";
+          echo "display: block;";
+          echo "text-align: center;";
+          echo "margin-top: 10px;";
+          echo "margin-left: 10px;";
+          echo "margin-right: 10px;";
+          echo "}";
+          echo "</style>";
+          echo "</head>";
+          echo "<body>";
           echo "<h2>Ticket Reservado:</h2>";
-          echo "Origen-Destino: " . $origen_destino . "<br>";
-          echo "Horario: " . $horario . "<br>";
-
-          echo "<br>";
-          echo "<a href='viajes.php'>Volver</a>";
-          echo "<a href='tickets_reservados.php'>Ver todos los tickets reservados</a>";
+          echo "<div class='container'>";
+          echo "<div class='row justify-content-center'>";
+          echo "<div class='col-md-6'>";
+          echo "<div class='card'>";
+          echo "<div class='card-body'>";
+          echo "<p><strong>Origen-Destino:</strong> " . $origen_destino . "</p>";
+          echo "<p><strong>Horario:</strong> " . $horario . "</p>";
+          echo "<a href='viajes.php' class='btn btn-primary'>Volver</a>";
+          echo "<a href='tickets_reservados.php' class='btn btn-primary'>Ver todos los tickets reservados</a>";
+          echo "</div>";
+          echo "</div>";
+          echo "</div>";
+          echo "</div>";
+          echo "</div>";
+          echo "</body>";
+          echo "</html>";
         }
+      }
     }
-}
   } catch (Exception $e) {
-        echo 'No se ha podido reservar su ticket: ', $e->getMessage();
-        echo '<br><a href="viajes.php">Volver</a>';
+    echo 'No se ha podido reservar su ticket: ', $e->getMessage();
+    echo '<br><a href="viajes.php">Volver</a>';
   }
 
   // Cerrar conexión a la base de datos
   $mysqli->close();
 } else {
-  echo "ID de viaje inválido.";
+  echo "El ID del viaje no es válido.";
 }
 ?>
-
-
-
-
-
