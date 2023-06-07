@@ -9,10 +9,7 @@
     <body>
         <form action="login.php" method="post">
             <p><label >Nombre: <input type="text" name="usuario" placeholder="Usuario" required></label></p>
-            
             <p><label >Contraseña: <input type="password" name="contraseña" placeholder="Contraseña" required></label></p>
-            
-         
             <input type="submit" value="Aceptar">
             
         </form>

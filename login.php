@@ -29,7 +29,7 @@
                     //Si hay coincidencia imprimo el nombre y pongo encontrado a true para finalizar el bucle
                         $encontrado=true;
                         echo "Bienvenido ", $fila['nombre'];
-                        echo ' <br><a href="index.html">Volver al inicio</a>';
+                        echo ' <br><a href="index.php">Volver al inicio</a>';
                     }else{
                         $encontrado=false;
                     }
