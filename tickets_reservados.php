@@ -19,7 +19,7 @@ if ($resultado_tickets && $resultado_tickets->num_rows > 0) {
   echo "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css'>";
   echo "<style>";
   echo "body {";
-  echo "    background-color: #f8f9fa;";
+  echo "    background-color: #47ABDD;";
   echo "    padding: 20px;";
   echo "}";
   echo "h1 {";
