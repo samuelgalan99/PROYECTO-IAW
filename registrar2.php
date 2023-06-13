@@ -2,7 +2,7 @@
     //Establezco conexion con la BD
     require 'conexion.php';
     //Me traigo todos los datos de la tabla login
-    $sql = "SELECT * FROM login";
+    $sql = "SELECT * FROM usuarios";
     // Ejecuto la sentencia y guardo el resultado
     $resultado = $mysqli->query($sql);
 
@@ -10,18 +10,37 @@
     $nombre = $_POST['nombre'];
     $usuario = $_POST['usuario'];
     $contraseña = $_POST['contraseña'];
-    
-    // Insertamos los datos obtenidos en la tabla
-    $sql = "INSERT INTO login (nombre, usuario, contraseña) VALUES ('$nombre', '$usuario', '$contraseña')";
-    
-    //Ejecuto la sentencia (try|catch)
-    try {
-        $resultado = $mysqli->query($sql);
-        
-     //En el caso de que de error, se guarda en $e y lo mostramos por pantalla con getMessage
-    } catch (Exception $e) {
-        echo 'No se ha podido crear su nuevo usuario: ', $e->getMessage();
-        echo '<br><a href="registrar.php">Volver</a>';
+
+    // Verifico si el nombre de usuario ya existe
+    $verificar_usuario = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
+    $resultado_verificacion = $mysqli->query($verificar_usuario);
+
+    if ($resultado_verificacion->num_rows > 0) {
+        // Si se devuelve mas de una columna, el usuario ya existe, muestro el mensaje de error
+        ?>
+        <div class="container">
+        <p class="success-message">El usuario que intenta crear ya existe, por favor, pruebe con otro.</p>
+        <a href="registrar.php" class="back-link">Volver</a>
+    </div>
+    <?php
+    } else {
+        // Si el usuario no existe, inserto los datos en la tabla
+        $sql = "INSERT INTO usuarios (nombre, usuario, contraseña) VALUES ('$nombre', '$usuario', '$contraseña')";
+
+        // Y ejecuto la sentencia try catch
+        try {
+            $resultado = $mysqli->query($sql);
+            // Muestro el mensaje de registro completado
+            ?>
+            <div class="container">
+            <p class="success-message">Registro completado, puede volver a la página principal para iniciar sesión con su usuario.</p>
+            <a href="index.php" class="back-link">Volver</a>
+            </div>
+            <?php
+        } catch (Exception $e) {
+            echo "No se ha podido crear su nuevo usuario: ", $e->getMessage();
+            echo '<br><a href="registrar.php">Volver</a>';
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -30,7 +49,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Completado</title>
+    <title>Registro</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -66,12 +85,6 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Registro Completado</h1>
-        <p class="success-message">Registro completado, ahora puede volver para iniciar sesión con su nuevo usuario.</p>
-        <a href="index.php" class="back-link">Volver</a>
-    </div>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

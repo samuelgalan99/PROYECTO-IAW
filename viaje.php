@@ -2,7 +2,7 @@
 // Establezco conexión con la BD
 require 'conexion.php';
 // Me traigo todos los datos de la tabla login
-$sql = "SELECT * FROM viajes";
+$sql = "SELECT * FROM viaje";
 // Ejecuto la sentencia y guardo el resultado
 $resultado = $mysqli->query($sql);
 ?>
@@ -37,8 +37,9 @@ $resultado = $mysqli->query($sql);
             margin-bottom: 20px;
         }
 
-        th, td {
-            color:#FFFFFF;
+        th,
+        td {
+            color: #FFFFFF;
             padding: 8px;
             border-bottom: 1px solid #ddd;
             text-align: left;
@@ -49,14 +50,6 @@ $resultado = $mysqli->query($sql);
             color: white;
         }
 
-        td a {
-            color: #FFFFFF;
-            text-decoration: none;
-        }
-
-        td a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 
@@ -68,14 +61,16 @@ $resultado = $mysqli->query($sql);
     if (mysqli_num_rows($resultado) > 0) {
         // Mostramos los viajes existentes
         echo "<table>";
-        echo "<tr><th>ID</th><th>Origen-Destino</th><th>Horarios</th><th>Reservas</th></tr>";
+        echo "<tr><th>ID</th><th>Origen</th><th>Destino</th><th>Hora salida</th><th>Plazas</th><th>Reservas</th></tr>";
 
         while ($col = mysqli_fetch_assoc($resultado)) {
             echo "<tr>";
-            echo "<td>" . $col["id"] . "</td>";
-            echo "<td>" . $col["origen_destino"] . "</td>";
-            echo "<td>" . $col["horario"] . "</td>";
-            echo "<td><a href='tickets.php?id=" . $col["id"] . "'>Reservar</a></td>";
+            echo "<td>" . $col["id_viaje"] . "</td>";
+            echo "<td>" . $col["origen"] . "</td>";
+            echo "<td>" . $col["destino"] . "</td>";
+            echo "<td>" . $col["hora_salida"] . "</td>";
+            echo "<td>" . $col["plazas"] . "</td>";
+            echo "<td><a href='tickets.php?id=" . $col["id_viaje"] . "' class='btn btn-primary'>Reservar</a></td>";
             echo "</tr>";
         }
 
@@ -83,7 +78,7 @@ $resultado = $mysqli->query($sql);
     } else {
         echo "No se encontraron viajes disponibles.";
     }
-
+    echo "<a href='index.php' class='btn btn-primary'>Volver</a>";
     // Cerrar conexión a la base de datos
     $mysqli->close();
     ?>

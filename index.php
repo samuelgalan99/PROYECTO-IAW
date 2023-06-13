@@ -63,8 +63,8 @@
     </style>
 </head>
 <body>
-    <form action="login.php" method="post">
-        <p><label for="usuario">Nombre: </label><input type="text" name="usuario" id="usuario" placeholder="Usuario" required></p>
+    <form action="usuarios.php" method="post">
+        <p><label for="usuario">Usuario: </label><input type="text" name="usuario" id="usuario" placeholder="Usuario" required></p>
         <p><label for="contraseña">Contraseña: </label><input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" required></p>
         <input type="submit" value="Aceptar">
     </form>

@@ -2,7 +2,7 @@
     //Establezco la conexion a la BD
     require 'conexion.php';
     //Me traigo todos los datos de la tabla login
-    $sql = "SELECT * FROM login";
+    $sql = "SELECT * FROM usuarios";
     // Ejecuto la sentencia y guardo el resultado
     $resultado = $mysqli->query($sql);
 ?>
@@ -21,6 +21,7 @@
         }
         
         .container {
+            text-align: center;
             max-width: 400px;
             margin: 0 auto;
         }
@@ -55,7 +56,8 @@
                     $encontrado = true;
                     echo "<h1>Inicio de sesión correcto</h1>";
                     echo "Bienvenido ", $fila['nombre'];
-                    echo ' <br><a href="viajes.php">Reservar un viaje</a>';
+                    echo '<br><a href="viaje.php">Reservar un viaje</a>';
+                    echo '<br><a href="index.php">Volver</a>';
                 } else {
                     $encontrado = false;
                 }
