@@ -1,10 +1,26 @@
 <?php
-// Establezco conexión con la BD
-require 'conexion.php';
-// Me traigo todos los datos de la tabla login
-$sql = "SELECT * FROM viaje";
-// Ejecuto la sentencia y guardo el resultado
-$resultado = $mysqli->query($sql);
+    session_start();
+
+    // Establezco conexión con la BD
+    require 'conexion.php';
+    // Me traigo todos los datos de la tabla login
+    $sql = "SELECT * FROM viaje";
+    // Ejecuto la sentencia y guardo el resultado
+    $resultado = $mysqli->query($sql);
+
+    if (!isset($_SESSION['usuario'])) {
+        // Redirigo al usuario al inicio de sesión si no ha iniciado sesión
+        header('Location: index.php');
+        exit;
+    }
+
+    // Cerrar sesión al hacer clic en el boton de volver
+    if (isset($_POST['cerrarsesion'])) {
+        // Cerrar loa sesión
+        session_destroy();
+        header('Location: index.php');
+        exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +94,15 @@ $resultado = $mysqli->query($sql);
     } else {
         echo "No se encontraron viajes disponibles.";
     }
-    echo "<a href='index.php' class='btn btn-primary'>Volver</a>";
+    ?>
+    <div style="display:inline-block; margin-right: 10px;">
+        <a href="index.php" name="cerrarsesion" class="btn btn-primary">Volver</a>
+    </div>
+
+    <div style="display:inline-block; margin-left: 10px;">
+        <a href="reserva.php" class="btn btn-primary">Ver Reservas</a>
+    </div>
+    <?php
     // Cerrar conexión a la base de datos
     $mysqli->close();
     ?>
