@@ -3,7 +3,7 @@
 
     // Establezco conexión con la BD
     require 'conexion.php';
-    // Me traigo todos los datos de la tabla login
+    // Me traigo todos los datos de la tabla viaje
     $sql = "SELECT * FROM viaje";
     // Ejecuto la sentencia y guardo el resultado
     $resultado = $mysqli->query($sql);
@@ -25,7 +25,6 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -99,9 +98,10 @@
         <a href="index.php" name="cerrarsesion" class="btn btn-primary">Volver</a>
     </div>
 
-    <div style="display:inline-block; margin-left: 10px;">
-        <a href="reserva.php" class="btn btn-primary">Ver Reservas</a>
+    <div style="display:inline-block; margin-left: 0px;">
+        <a href="tickets_reservados.php" class="btn btn-primary">Mis reservas</a>
     </div>
+    
     <?php
     // Cerrar conexión a la base de datos
     $mysqli->close();

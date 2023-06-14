@@ -1,7 +1,7 @@
 <?php
     //Establezco conexion con la BD
     require 'conexion.php';
-    //Me traigo todos los datos de la tabla login
+    //Me traigo todos los datos de la tabla usuarios
     $sql = "SELECT * FROM usuarios";
     // Ejecuto la sentencia y guardo el resultado
     $resultado = $mysqli->query($sql);

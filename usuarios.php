@@ -2,7 +2,6 @@
  // Establezco la conexión a la BD
 require 'conexion.php';
 
-// Inicio de sesión
 session_start();
 
 // Recojo los datos del formulario
@@ -16,9 +15,7 @@ $resultado = $mysqli->query($sql);
 if ($resultado->num_rows > 0) {
     // Si las credenciales son correctas, se encontró el usuario
     $fila = $resultado->fetch_assoc();
-    $_SESSION['usuario'] = $fila['nombre']; // Almaceno el nombre de usuario en una variable de sesión
-
-    // Redirigir al usuario a la página después del inicio de sesión exitoso
+    $_SESSION['usuario'] = $fila['usuario']; // Almaceno el usuario en una variable
     header('Location: viaje.php');
     exit;
 } else {
