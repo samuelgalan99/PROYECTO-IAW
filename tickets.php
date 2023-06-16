@@ -81,6 +81,10 @@ if (isset($_GET['id'])) {
 <?php
         } else {
             echo "<h3>Plazas agotadas</h3>";
+            echo "<div style='display:inline-block; margin-right: 10px; padding:10px;'>";
+                echo "<a href='viaje.php' class='btn btn-primary'>Volver</a>";
+            echo "</div>";
+
         }
     } else {
         echo "<h3>Viaje no encontrado</h3>";
